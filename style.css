@@ -1,0 +1,9 @@
+.circle-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.circle-matrix .row {
+  display: flex;
+  gap: 2px;
+}
