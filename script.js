@@ -120,7 +120,7 @@ setTimeout(function() {
 }, 3000);
 
 setTimeout(function() {
-    circleMatrixInstance1.changeMatrix(circlematrix_11x11["G"]);
+    circleMatrixInstance1.changeMatrix(circlematrix_11x11["S"]);
     circleMatrixInstance1.render();
 }, 6000);
 
@@ -133,7 +133,7 @@ setTimeout(function() {
 }, 4000);
 
 setTimeout(function() {
-    cornerFillAnimation(circleMatrixInstance2, 11, 1, 2);
+    cornerFillAnimation(circleMatrixInstance2, 11, 1, 3);
 }, 6000);
 
 function cornerFillAnimation(instance, size, value, start) {
@@ -145,16 +145,24 @@ function cornerFillAnimation(instance, size, value, start) {
             for(let i=0;i<animationCircleCount+1;i++) {
                 if(start == 0) {
                     instance.changeOne(0+i,animationCircleCount-i,value);
+                } else if(start==1) {
+                    instance.changeOne(0+i,animationHalfCount-animationCircleCount+i-1,value);
                 } else if(start==2) {
                     instance.changeOne(animationHalfCount-i-1,animationHalfCount-animationCircleCount+i-1,value);
+                } else if(start==3) {
+                    instance.changeOne(animationHalfCount-i-1,animationCircleCount-i,value);
                 }
             }
         } else if(animationCircleCount>=animationHalfCount && animationCircleCount<animationHalfCount*2) {
             for(let i=animationCircleCount+1;i<animationHalfCount*2;i++) {
                 if(start == 0) {
                     instance.changeOne(i-animationHalfCount,animationCircleCount+animationHalfCount-i,value);
+                } else if(start==1) {
+                    instance.changeOne(i-animationHalfCount,i-animationCircleCount-1,value);
                 } else if(start == 2) {
                     instance.changeOne(i-animationCircleCount-1,animationHalfCount*2-i-1,value);
+                } else if(start==3) {
+                    instance.changeOne(i-animationCircleCount-1,i-animationHalfCount,value);
                 }
             }
         }
