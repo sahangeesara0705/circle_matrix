@@ -42,7 +42,7 @@ let circleMatrix = (function (){
         
         function changeOne(i, j, state) {
             matrixState[i][j] = state;
-            console.log(matrixState);
+            //console.log(matrixState);
         }
         
         function changeRow(i, state) {
@@ -90,7 +90,7 @@ let circleMatrix = (function (){
 })();
 
 const circleMatrixInstance1 = circleMatrix.init(document.getElementById("circle-matrix"), { onColor: "blue", circleSize: 8 });
-const circleMatrixInstance2 = circleMatrix.init(document.getElementById("circle-matrix-2"), {});
+const circleMatrixInstance2 = circleMatrix.init(document.getElementById("circle-matrix-2"), { onColor: "#000", circleSize: 20 });
 circleMatrixInstance1.render();
 circleMatrixInstance2.render();
 
@@ -133,8 +133,17 @@ setTimeout(function() {
 }, 4000);
 
 setTimeout(function() {
-    cornerFillAnimation(circleMatrixInstance2, 11, 1, 3);
+    sideFillAnimation(circleMatrixInstance2, 11, 1, 3);
 }, 6000);
+
+setTimeout(function() {
+    sideFillAnimation(circleMatrixInstance2, 11, 0, 3);
+}, 8000);
+
+setTimeout(function() {
+    circleMatrixInstance2.changeMatrix(circlematrix_11x11["S"]);
+    circleMatrixInstance2.render();
+}, 10000);
 
 function cornerFillAnimation(instance, size, value, start) {
     let count = 0;
@@ -165,8 +174,34 @@ function cornerFillAnimation(instance, size, value, start) {
                     instance.changeOne(i-animationCircleCount-1,i-animationHalfCount,value);
                 }
             }
+        } else {
+            clearInterval(animation);
         }
         animationCircleCount++;
         instance.render();
+    }, 50);
+}
+
+function sideFillAnimation(instance, size, value, start) {
+    let animationCount = 0;
+    let animation = setInterval(function() {
+        if(animationCount<size) {
+            for(let i=0;i<size;i++) {
+                if(start==0) {
+                    instance.changeOne(animationCount,i,value);
+                } else if(start==1) {
+                    instance.changeOne(i,size-animationCount-1,value);
+                } else if(start==2) {
+                    instance.changeOne(size-animationCount-1,i,value);
+                } else if(start==3) {
+                    instance.changeOne(i,animationCount,value);
+                }
+            }
+        } else {
+            clearInterval(animation);
+        }
+        animationCount++;
+        instance.render();
+        //console.log("animation running");
     }, 50);
 }
