@@ -119,7 +119,7 @@ setTimeout(function() {
     }, 100);
 }, 3000);
 
-setTimeout(function() {
+/*setTimeout(function() {
     circleMatrixInstance1.changeMatrix(circlematrix_11x11["S"]);
     circleMatrixInstance1.render();
 }, 6000);
@@ -143,11 +143,11 @@ setTimeout(function() {
 setTimeout(function() {
     circleMatrixInstance2.changeMatrix(circlematrix_11x11["S"]);
     circleMatrixInstance2.render();
-}, 10000);
+}, 10000);*/
 
 setTimeout(function() {
-    randomFillAnimation(circleMatrixInstance2, 11, 1, 10);
-}, 12000);
+    squareFillAnimation(circleMatrixInstance2, 11, 1);
+}, 1000);
 
 function cornerFillAnimation(instance, size, value, start) {
     let count = 0;
@@ -238,4 +238,19 @@ function randomFillAnimation(instance, size, value, count) {
         instance.render();
         animationCount++;
     }, 50);
+}
+
+function squareFillAnimation(instance, size, value) {
+    let center = Math.floor(size/2);
+    let animationCount = 0;
+    let animation = setInterval(function() {
+        for(let i=0;i<animationCount*2+1;i++) {
+            instance.changeOne(center-animationCount,center-animationCount+i,value);
+            instance.changeOne(center-animationCount+i,center+animationCount,value);
+            instance.changeOne(center+animationCount,center-animationCount+i,value);
+            instance.changeOne(center-animationCount+i,center-animationCount,value);
+        }
+        instance.render();
+        animationCount++;
+    }, 1000);
 }
