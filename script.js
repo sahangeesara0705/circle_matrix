@@ -145,6 +145,10 @@ setTimeout(function() {
     circleMatrixInstance2.render();
 }, 10000);
 
+setTimeout(function() {
+    randomFillAnimation(circleMatrixInstance2, 11, 1, 10);
+}, 12000);
+
 function cornerFillAnimation(instance, size, value, start) {
     let count = 0;
     let animationCircleCount = 0;
@@ -203,5 +207,35 @@ function sideFillAnimation(instance, size, value, start) {
         animationCount++;
         instance.render();
         //console.log("animation running");
+    }, 50);
+}
+
+function randomFillAnimation(instance, size, value, count) {
+    let animationCount = 0;
+    let animationArr = [];
+    function randomNum() {
+        return Math.floor(Math.random()*count);
+    }
+    for(let i=0;i<size;i++) {
+        let innerAnimationArr = [];
+        for(let j=0;j<size;j++) {
+            innerAnimationArr.push(randomNum());
+        }
+        animationArr.push(innerAnimationArr);
+    }
+    let animation = setInterval(function() {
+        if(animationCount<count) {
+            for(let i=0;i<animationArr.length;i++) {
+                for(let j=0;j<animationArr[i].length;j++) {
+                    if(animationCount == animationArr[i][j]) {
+                        instance.changeOne(i, j, value);
+                    }
+                }
+            }
+        } else {
+            clearInterval(animation);
+        }
+        instance.render();
+        animationCount++;
     }, 50);
 }
