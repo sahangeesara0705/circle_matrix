@@ -149,6 +149,9 @@ setTimeout(function() {
     squareFillAnimation(circleMatrixInstance2, 11, 1);
 }, 1000);
 
+
+
+/* helper functions */
 function cornerFillAnimation(instance, size, value, start) {
     let count = 0;
     let animationCircleCount = 0;

@@ -1,15 +1,3 @@
-/**
- * circlematrix_11x11.js
- * -----------------------
- * Bitmap font data: an 11x11 0/1 grid per character (digits 0-9,
- * uppercase A-Z, lowercase a-z), matching the stroke style used by
- * circle-matrix.js (2-cell margin, 1px stroke, rounded corners).
- *
- * Usage:
- *   instance.changeMatrix(circlematrix_11x11["A"]);
- *   // or, with bounds checking:
- *   instance.changeMatrix(getCircleMatrixGlyph("A"));
- */
 const circlematrix_11x11 = {
     "0": [
         [0,0,0,0,0,0,0,0,0,0,0],
@@ -819,22 +807,6 @@ const circlematrix_11x11 = {
     ]
 };
 
-/**
- * Looks up the 11x11 matrix for a character. Returns null (and warns)
- * for characters that aren't in the font, e.g. punctuation or spaces,
- * so callers can decide how to handle a blank cell themselves.
- * @param {string} char - a single character, e.g. "A" or "7"
- * @returns {number[][]|null}
- */
-function getCircleMatrixGlyph(char) {
-    if (!Object.prototype.hasOwnProperty.call(circlematrix_11x11, char)) {
-        console.warn(`circlematrix_11x11: no glyph for "${char}"`);
-        return null;
-    }
-    return circlematrix_11x11[char];
-}
-
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = circlematrix_11x11;
-    module.exports.getCircleMatrixGlyph = getCircleMatrixGlyph;
 }

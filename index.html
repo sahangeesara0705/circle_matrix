@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Link your external CSS file here -->
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>circle-matrix demo</title>
+<style>
+    body {
+        background: #111;
+        color: #eee;
+        font-family: monospace;
+        display: flex;
+        gap: 60px;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .circle-matrix .row {
+        display: flex;
+    }
+    .circle-matrix .cell {
+        margin: 1px;
+        transition: background-color 0.15s ease;
+    }
+</style>
 </head>
 <body>
-
-    <!-- Your visible website content goes here -->
     <div id="circle-matrix"></div>
     <div id="circle-matrix-2"></div>
 
-    <!-- Link your external JavaScript file here -->
+    <script src="circle-matrix.js"></script>
+    <script src="circle-matrix-fill-animations.js"></script>
     <script src="circlematrix_11x11.js"></script>
-    <script src="script.js"></script>
+    <script src="demo.js"></script>
 </body>
 </html>
-
