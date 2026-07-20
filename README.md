@@ -1,6 +1,6 @@
 # circle-matrix
 
-A small vanilla-JS library for rendering an NxM grid of circular "pixels" and animating them. Split into three independent files plus a demo.
+A small vanilla-JS library for rendering an NxM grid of circular "pixels" and animating them. Split into three independent files plus a demo (https://sahangeesara0705.github.io/circle_matrix/).
 
 ## Files
 
