@@ -5,15 +5,19 @@
 <title>circle-matrix demo</title>
 <style>
     body {
-        background: #111;
-        color: #eee;
-        font-family: monospace;
-        display: flex;
+        background: #fff;
+        color: #000;
+        font-family: sans-serif;
+        /*display: flex;
         gap: 60px;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        margin: 0;
+        min-height: 100vh;*/
+        /*margin: 0;*/
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
     }
     .circle-matrix .row {
         display: flex;
@@ -22,11 +26,75 @@
         margin: 1px;
         transition: background-color 0.15s ease;
     }
+    pre {
+      background-color: #eeeeee;
+      word-wrap: word-break;
+    }
 </style>
 </head>
 <body>
-    <div id="circle-matrix"></div>
+<div class="container">
+    <h1>circle-matrix</h1>
+    <h2>Initialize circle-matrix</h2>
+    <p>Creates an instance bound to a container element and draws it for the first time. Every other method below assumes you've already got an instance from <code>circleMatrix.init()</code>.</p>
+    <pre>
+    <code>
+const circleMatrixInstance1 = circleMatrix.init(
+    document.getElementById("circle-matrix"),
+    {
+        onColor: "blue",
+        circleSize: 8
+    }
+);
+circleMatrixInstance1.render();
+    </code>
+    </pre>
+    <div id="circle-matrix-1"></div>
+
+    <h2>Using .changeOne()</h2>
+    <p>Turns a single cell on or off by row (<code>i</code>) and column (<code>j</code>) index. Doesn't redraw by itself — call <code>.render()</code> after to see the change.</p>
+    <pre><code>
+circleMatrixInstance2.changeOne(1, 1, 1);
+circleMatrixInstance2.render();
+    </code></pre>
     <div id="circle-matrix-2"></div>
+
+    <h2>Using .changeRow() and .changeColumn()</h2>
+    <p>Sets an entire row or column to the same state in one call — handy for building crosshair or grid-line effects.</p>
+    <pre><code>
+circleMatrixInstance3.changeRow(1, 1);
+circleMatrixInstance3.changeColumn(1, 1);
+circleMatrixInstance3.render();
+    </code></pre>
+    <div id="circle-matrix-3"></div>
+
+    <h2>Using .changeMatrix()</h2>
+    <p>Replaces the whole grid at once from a 2D array — the array just needs to match the instance's width/height. This is how <code>circlematrix_11x11.js</code> glyphs get drawn: look one up with <code>getCircleMatrixGlyph()</code> and pass it straight in.</p>
+    <pre><code>
+circleMatrixInstance4.changeMatrix(getCircleMatrixGlyph("C"));
+circleMatrixInstance4.render();
+    </code></pre>
+    <div id="circle-matrix-4"></div>
+
+    <h2>Using .changeAll()</h2>
+    <p>Sets every cell in the grid to the same state — the quickest way to blank a grid (<code>0</code>) or light it up entirely (<code>1</code>).</p>
+    <pre><code>
+circleMatrixInstance5.changeAll(1);
+circleMatrixInstance5.render();
+    </code></pre>
+    <div id="circle-matrix-5"></div>
+
+    <h2>Using .getState()</h2>
+    <p>Returns a copy of the current grid as a plain 2D array of 0s and 1s — useful for saving a pattern, comparing states, or debugging. It's a copy, so mutating the result won't affect the instance.</p>
+    <pre><code>
+circleMatrixInstance6.changeOne(0, 0, 1);
+circleMatrixInstance6.changeOne(10, 10, 1);
+circleMatrixInstance6.render();
+console.log(circleMatrixInstance6.getState());
+    </code></pre>
+    <div id="circle-matrix-6"></div>
+    <code id="circle-matrix-6-state"></code>
+</div>
 
     <script src="circle-matrix.js"></script>
     <script src="circle-matrix-fill-animations.js"></script>
