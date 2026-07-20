@@ -81,3 +81,68 @@ circleMatrixInstance6.changeOne(0, 0, 1);
 circleMatrixInstance6.changeOne(10, 10, 1);
 circleMatrixInstance6.render();
 document.getElementById("circle-matrix-6-state").textContent = JSON.stringify(circleMatrixInstance6.getState());
+
+// circleMatrixFillAnimations.sideFill(instance, size, value, start) — sweeps a
+// full row/column across the grid, one line at a time. start picks the edge (0-3).
+const circleMatrixInstance7 = circleMatrix.init(
+    document.getElementById("circle-matrix-7"),
+    { onColor: "black" }
+);
+circleMatrixInstance7.render();
+let btnCm7Fill1 = document.getElementById("cm7-fill-1");
+let btnCm7Fill0 = document.getElementById("cm7-fill-0");
+btnCm7Fill1.addEventListener("click", function() {
+    circleMatrixFillAnimations.sideFill(circleMatrixInstance7, 11, 1, 0);
+});
+btnCm7Fill0.addEventListener("click", function() {
+    circleMatrixFillAnimations.sideFill(circleMatrixInstance7, 11, 0, 0);
+});
+
+// circleMatrixFillAnimations.cornerFill(instance, size, value, start) — fills
+// in an expanding diagonal sweep from a corner. start picks the corner (0-3).
+const circleMatrixInstance8 = circleMatrix.init(
+    document.getElementById("circle-matrix-8"),
+    { onColor: "black" }
+);
+circleMatrixInstance8.render();
+let btnCm8Fill1 = document.getElementById("cm8-fill-1");
+let btnCm8Fill0 = document.getElementById("cm8-fill-0");
+btnCm8Fill1.addEventListener("click", function() {
+    circleMatrixFillAnimations.cornerFill(circleMatrixInstance8, 11, 1, 0);
+});
+btnCm8Fill0.addEventListener("click", function() {
+    circleMatrixFillAnimations.cornerFill(circleMatrixInstance8, 11, 0, 0);
+});
+
+// circleMatrixFillAnimations.randomFill(instance, size, value, count) — fills
+// random cells over `count` ticks, so the grid fills in unevenly.
+const circleMatrixInstance9 = circleMatrix.init(
+    document.getElementById("circle-matrix-9"),
+    { onColor: "black" }
+);
+circleMatrixInstance9.render();
+let btnCm9Fill1 = document.getElementById("cm9-fill-1");
+let btnCm9Fill0 = document.getElementById("cm9-fill-0");
+btnCm9Fill1.addEventListener("click", function() {
+    circleMatrixFillAnimations.randomFill(circleMatrixInstance9, 11, 1, 40);
+});
+btnCm9Fill0.addEventListener("click", function() {
+    circleMatrixFillAnimations.randomFill(circleMatrixInstance9, 11, 0, 40);
+});
+
+// circleMatrixFillAnimations.squareFill(instance, size, value) — fills from
+// the center outward in expanding square rings. No `start` param — it's
+// always center-out.
+const circleMatrixInstance10 = circleMatrix.init(
+    document.getElementById("circle-matrix-10"),
+    { onColor: "black" }
+);
+circleMatrixInstance10.render();
+let btnCm10Fill1 = document.getElementById("cm10-fill-1");
+let btnCm10Fill0 = document.getElementById("cm10-fill-0");
+btnCm10Fill1.addEventListener("click", function() {
+    circleMatrixFillAnimations.squareFill(circleMatrixInstance10, 11, 1);
+});
+btnCm10Fill0.addEventListener("click", function() {
+    circleMatrixFillAnimations.squareFill(circleMatrixInstance10, 11, 0);
+});
